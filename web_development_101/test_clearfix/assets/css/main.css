@@ -1,0 +1,8 @@
+div {
+  transition: background-color 0.5s ease;
+  background-color: red;
+}
+
+div:hover {
+  background-color: green;
+}

@@ -1,0 +1,57 @@
+/* === GRID === */
+.container {
+	width: 900px;
+	height: 900px;
+	margin: 0 auto;
+	float: left;
+}
+
+.square {
+	border: 1px solid #000;
+	float: left;
+}
+
+
+/* === OPTION BAR === */
+.option_bar {
+	background-color: greenyellow;
+	padding: 10px;
+	float: right;
+}
+
+.option_bar > div {
+	border: 1px solid #000;
+	background-color: darkgreen;
+	width: 300px;
+	height: 60px;
+}
+
+.reset {
+	float: left;
+	width: 50%;
+	height: 100%;
+	background-color: indigo;
+}
+
+.size {
+	float: right;
+	width: 50%;
+	height: 100%;
+	background-color: magenta;
+}
+
+
+/* === CLEARFIX === */
+.clearfix:before,
+.clearfix:after {
+  content: "";
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.clearfix {
+  zoom: 1; /* ie 6/7 */
+}
