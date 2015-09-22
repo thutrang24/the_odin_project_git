@@ -1,45 +1,48 @@
+body {
+	font-family: 'Exo 2', sans-serif;
+	font-size: 24px;
+	margin: 0;
+}
+
 /* === GRID === */
 .container {
-	width: 900px;
-	height: 900px;
 	margin: 0 auto;
 	float: left;
+	text-align: center;
 }
 
 .square {
 	border: 1px solid #000;
 	float: left;
+	display:inline-block;
 }
 
 
 /* === OPTION BAR === */
 .option_bar {
-	background-color: greenyellow;
-	padding: 10px;
 	float: right;
 }
 
 .option_bar > div {
 	border: 1px solid #000;
-	background-color: darkgreen;
+	background-color: #1f2223;
 	width: 300px;
-	height: 60px;
+	text-align: center;
+	color: white;
+	line-height: 88px;
 }
 
-.reset {
-	float: left;
-	width: 50%;
-	height: 100%;
-	background-color: indigo;
+.option_bar > div:hover, .selected{
+	background-color: #f0ab00 !important;
+	color: #1f2223 !important;
+	cursor: pointer;
 }
 
-.size {
-	float: right;
-	width: 50%;
-	height: 100%;
-	background-color: magenta;
+.option_bar > div:nth-last-child(-n+2):hover{
+	background-color: grey !important;
+	color: #1f2223 !important;
+	cursor: pointer;
 }
-
 
 /* === CLEARFIX === */
 .clearfix:before,

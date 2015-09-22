@@ -1,35 +1,64 @@
 //init
 $(document).ready(function() {
+    get_viewport();
+
     mode_1();
     mode_2();
     mode_3();
     mode_4();
     mode_5();
-    default_mode();
-    draw_grid(size);
     draw_grid_click();
     reset_click();
+
+    default_mode();
+
+    toggle_selected();
+
 })
 
-var grid_colour = 'rgba(255,255,255,0.0)';
+var grid_colour = 'rgba(255,208,93,0.0)';
 var size = 10;
 var mode = 1;
 
 //general
+//grid size  ==============================================================
+function get_viewport(){
+    var height = $(window).height();
+    var width = $(window).width();
+    var height_menu = height/7;
+    $('.option_bar > div').css({
+                    'height': + height_menu + 'px',
+                    'width': + width*0.2 + 'px',
+                });
+    $('.container').css({
+                    'height': + height*1.026 + 'px',
+                    'width': + width*0.798 + 'px',
+                });
 
-//grid size
+
+}
+
+
 function draw_grid(amount) {
     var $newdiv;
-    for (var i = 0; i < amount * amount; i++) {
-        $newdiv = $('<div class="square"/>');
-        $('.container').append($newdiv);
-    }
+    var number_of_squares_width;
+
     var width = $('.container').css('width').replace(/[^-\d\.]/g, '');
-    var square_width = width / amount - 2;
+    var height = $('.container').css('height').replace(/[^-\d\.]/g, '');
+    var square_width = (height / amount) -2 ; //short side of rectangle
+
+    number_of_squares_width = Math.floor(width/(square_width+2));
+    var amount = amount * number_of_squares_width; //long side of rectangle    
+    
+    for (var i = 0; i < amount; i++) {
+        $newdiv = $('<div class="square"/>');
+        $('.container').append($newdiv) ;
+    }
+
     $('.square').css({
         'width': square_width + 'px',
         'height': square_width + 'px',
-        'background-color': grid_colour
+        'background-color': 'rgba(255,208,93,0.0)'
     });
 }
 
@@ -38,11 +67,12 @@ function draw_grid_click(){
         size = prompt("Please enter the new grid size: ", 10);
         $('.container').empty();
         draw_grid(size);
+        determine_mode(mode);
     })
 }
 
 
-//reset
+//reset  ==============================================================
 function reset() {
     $('.container').empty();
         draw_grid(size);
@@ -51,12 +81,33 @@ function reset() {
 function reset_click(){
     $('.reset').click(function(){
         reset();
+        determine_mode(mode);
     })
 }
 
+//choose mode
+function determine_mode(mode){
+    console.log("in" + mode)
+    switch(mode){
+        case 1:
+            default_mode();
+            break;
+        case 2:
+            trail_mode();
+            break;
+        case 3:
+            rainbow_mode();
+            break;
+        case 4:
+            random_mode();
+            break;
+        case 5:
+            opacity_mode();
+            break;
+    }
+}
 
-//MODES
-
+// MODES ==============================================================
 //mode 1
 function mode_1() {
     $('.default').click(function() {
@@ -70,7 +121,7 @@ function default_mode() {
             reset();
             $('.square').mouseenter(function() {
                 $(this).css({
-                    'background-color': 'black'
+                    'background-color': '#1f2223'
                 });
             });
         }
@@ -90,13 +141,13 @@ function trail_mode() {
             reset();
             $('.square').mouseenter(function() {
                 $(this).css({
-                    'background-color': 'black',
+                    'background-color': '#1f2223',
                     'transition': ''
                 });
             });
             $('.square').mouseleave(function() {
                 $(this).css({
-                    'background-color': grid_colour,
+                    'background-color': 'rgba(255,208,93,0.0)',
                     'transition': 'background-color 3.0s ease'
                 });
             });
@@ -130,7 +181,7 @@ function rainbow_mode() {
 
             $('.square').mouseleave(function() {
                 $(this).css({
-                    'background-color': grid_colour,
+                    'background-color': 'rgba(255,208,93,0.0)',
                     'transition': 'background-color 3.0s ease'
                 });
             });
@@ -158,7 +209,7 @@ function random_mode() {
             });
             $('.square').mouseleave(function() {
                 $(this).css({
-                    'background-color': grid_colour,
+                    'background-color': 'rgba(255,208,93,0.0)',
                     'transition': 'background-color 5.0s ease'
                 });
             });
@@ -185,12 +236,14 @@ function opacity_mode() {
 
 
             var colour = $(this).css("background-color");
+            console.log('colour: ' + colour)
 
-            if (colour == "rgb(0, 0, 0)") {
+            if (colour == "rgb(0, 0, 0)") { 
                 return false;
             }
 
             var opacity = parseFloat(colour.substring(colour.lastIndexOf(",") + 2, colour.length - 1).trim());
+            console.log('opacity: ' + opacity)
             var result = opacity + increment;
             $(this).css({
                 'background-color': 'rgba(0,0,0,' + result + ')',
@@ -198,4 +251,12 @@ function opacity_mode() {
 
         });
     }
+}
+
+
+function toggle_selected(){
+    $(".option_bar > div").slice(0,5).click(function() {
+      $(".option_bar > div").removeClass('selected');
+      $(this).addClass('selected'); 
+  });
 }
