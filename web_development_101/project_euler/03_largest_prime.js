@@ -1,35 +1,44 @@
-var product = 80;
-var primes_general = [];
-var primes_specific = [];
+//largest prime factor
 
-var solution = function(product){
-	getPrimes(100);
-    var current = product;
+primes = []
+var solution;
 
-    for(var i = 2; i < primes_general.length; i++){
-        console.log("current: " + current);
-        if (current%i==0){
-            primes_specific.push(i);
-            current = current/i;
-        }
-    }
-    return primes_specific;
-}
-
-function isPrime(value) {
+function is_prime(value) {
     for(var i = 2; i < value; i++) {
         if(value % i === 0) {
             return false;
         }
     }
-    primes_general.push(value);
+    return true;
 }
 
-function getPrimes(below){
-	for(var i = 2; i < below; i++){
-		isPrime(i);
+function fill_primes(limit){
+	for(var i = 2; i < limit; i++){
+	if(is_prime(i)){
+			primes.push(i)
+		}
 	}
-    return primes_general;
 }
 
-console.log(solution(product));
+
+function get_largest_prime(value){
+	prime_factors = [];
+	i = 0;
+	do{	
+		if(value%primes[i]==0){
+			prime_factors.push(primes[i])
+			value = value / primes[i]
+			i == 0
+		}else{
+			i++
+		}
+	}while(!(value == 1));
+
+	largest_prime = prime_factors[prime_factors.length-1]
+	return solution = largest_prime
+}
+
+fill_primes(10000)
+get_largest_prime(600851475143)
+
+console.log("solution: " + solution);
