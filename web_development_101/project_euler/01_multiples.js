@@ -1,8 +1,9 @@
-// Find the sum of all the multiples of 3 or 5 below 1000.
+/*
+	Get sum of all the multiples of 3 or 5 below 1000.
+*/
 
-var solution;
 
-function multiples_three_five() {
+var solution = function() {
 	var sum = 0;
 
 	for(var i = 0; i < 1000; i++){
@@ -10,10 +11,12 @@ function multiples_three_five() {
 			sum = sum + i;
 		}
 	}
-
-	return solution = sum
+	return sum
 }
 
 
-multiples_three_five();
-console.log("solution: " + solution);
+var start = new Date().getTime();
+var answer = solution();
+var end = new Date().getTime();
+console.log('Answer: ' + answer);
+console.log('Runtime: ' + (end-start) + " ms");

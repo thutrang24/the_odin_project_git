@@ -1,7 +1,14 @@
-//largest prime factor
+/*
+	get largest prime
+*/
 
 primes = []
-var solution;
+
+var solution = function(){
+	fill_primes(10000);
+	return get_largest_prime(600851475143);
+};
+
 
 function is_prime(value) {
     for(var i = 2; i < value; i++) {
@@ -34,11 +41,13 @@ function get_largest_prime(value){
 		}
 	}while(!(value == 1));
 
-	largest_prime = prime_factors[prime_factors.length-1]
-	return solution = largest_prime
+	largest_prime = prime_factors[prime_factors.length-1];
+	return largest_prime;
 }
 
-fill_primes(10000)
-get_largest_prime(600851475143)
 
-console.log("solution: " + solution);
+var start = new Date().getTime();
+var answer = solution();
+var end = new Date().getTime();
+console.log('Answer: ' + answer);
+console.log('Runtime ' + (end-start) + " ms");

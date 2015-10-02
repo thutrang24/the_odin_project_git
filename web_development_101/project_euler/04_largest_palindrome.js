@@ -1,4 +1,4 @@
-function get_largest_palindrome(){
+var solution = function(){
 	var product;
 	var start = 999;
 	var end = 99;
@@ -6,7 +6,12 @@ function get_largest_palindrome(){
 
 	for (var i = start; i > end; i--) {
 		for (var j = start; j > end; j--) {
-			product = i * j;		
+			product = i * j;	
+
+			if(product < current_largest_palindrome){
+				break;
+			}
+
 			if (is_palindrome(product) == true && product > current_largest_palindrome) {
 				current_largest_palindrome = product;
 			}
@@ -20,5 +25,8 @@ function is_palindrome(value){
 	return (value == value.toString().split('').reverse().join(''));
 }
 
-var solution = get_largest_palindrome();
-console.log("solution: " + solution);
+var start = new Date().getTime();
+var answer = solution();
+var end = new Date().getTime();
+console.log('Answer: ' + answer);
+console.log('Runtime: ' + (end-start) + " ms");

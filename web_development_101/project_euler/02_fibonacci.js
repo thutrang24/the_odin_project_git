@@ -1,9 +1,15 @@
-//By considering the terms in the Fibonacci sequence whose values do not exceed four million,
-//find the sum of the even-valued terms.
+/*
+	By considering the terms in the Fibonacci sequence whose values do not exceed four million,
+	get sum of the even-valued terms.
+*/
 
 var limit = 4000000
 var sequence = [1,2]
-var solution;
+
+var solution = function(){
+	get_fibonacci(limit);
+	sum_even_fibonacci();
+};
 
 function get_fibonacci(limit){
 	do {
@@ -26,7 +32,8 @@ function sum_even_fibonacci(){
 	return solution = sum;
 }
 
-get_fibonacci(limit)
-sum_even_fibonacci()
-
-console.log("solution: " + solution);
+var start = new Date().getTime();
+var answer = solution();
+var end = new Date().getTime();
+console.log('Answer: ' + answer);
+console.log('Runtime ' + (end-start) + " ms");
